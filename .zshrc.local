@@ -1,0 +1,44 @@
+# Pywal config
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
+# To add support for TTYs this line can be optionally added.
+source ~/.cache/wal/colors-tty.sh
+
+# Tmux config
+if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then                                   
+    tmux attach-session -t ssh || tmux new-session -s ssh                                       
+    exit                                                                                        
+fi
+
+# Cope with XVnc flaw, i3wm doesn't boot into the user's directory by default
+cd /home/martin-gutierrez
+
+## RDP work laptop with custom geometry and playing audio on the host
+wlaptop() {
+  wol -h 192.168.0.4 74:78:27:81:fb:eb --port 9
+  until xfreerdp /u:"Martin Gutierrez" /w:1888 /h:992 /v:192.168.0.4:3389 /sec:nla /audio-mode:1 +toggle-fullscreen; do
+      wol -h 192.168.0.4 74:78:27:81:fb:eb --port 9
+      sleep 5s
+  done
+}
+
+# Set variables
+export EDITOR=/usr/bin/nvim
+export BROWSER=/usr/bin/qutebrowser
+
+# Custom aliases
+alias neo='neofetch'
+alias mountWin10='sshfs win10: ~/sshfs'
+alias maimfeh='maim -s /tmp/selection.png && feh /tmp/selection.png'
+alias syu='sudo pacman -Syu'
+
+# Custom Plugins
+source '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh'
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+# Custom paths
+export PATH="${PATH}:${HOME}/.local/bin/"

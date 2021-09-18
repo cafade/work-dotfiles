@@ -1,0 +1,36 @@
+! to automatically start tmux inside urxvt
+!urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME" 
+
+!xvt.keysym.Shift-Control-V: perl:clipboard:paste
+!xvt.keysym.Shift-Control-C: perl:clipboard:copy
+
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+
+URxvt.iso14755: False
+URxvt.perl-ext-common: default
+!,clipboard
+ 
+URxvt.scrollBar:                false
+!URxvt.borderless: true
+URxvt.internalBorder: 0
+
+! Hack Linux font
+!URxvt*font: xft:Hack-Regular:pixelsize=15
+!URxvt*boldFont: xft:Hack-Bold:bold:pixelsize=15
+!URxvt*letterSpace: -1
+
+Xft.dpi: 96
+Xft.antialias: 1
+rofi.dpi: 100
+Xcursor.size: 32
+
+!i3wm.focus_follows_mouse: no
+!i3wm.mouse_warping: none
+
+XTerm*eightBitInput: false
+
+XTerm*modifyCursorKeys: 1
+
+XTerm*modifyFunctionKeys: 1

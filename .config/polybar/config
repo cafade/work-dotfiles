@@ -1,0 +1,437 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;==========================================================
+
+[colors]
+transparent = #00000000
+background = #dd232C31
+foreground = ${xrdb:color7:#222}
+inactive-text = #818D92
+accent = #ff232C31
+alert = #bd2c40
+
+[section/base]
+monitor = ${env:MONITOR:VGA-1}
+override-redirect = true
+bottom = false
+
+height = 27
+fixed-center = true
+radius-bottom = 20
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-bottom-size = 0
+border-left-size = 0
+border-right-size = 0
+
+spacing = 0
+padding-left = 1
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+
+[bar/right]
+inherit = section/base
+padding-right = 7
+width = 35%
+offset-y = 35
+offset-x = 64%
+modules-center = filesystem eth temperature 
+
+[bar/bot]
+monitor = ${env:MONITOR:VNC-0}
+width = 100%
+height = 27
+offset-x = 1%
+offset-y = 1%
+radius = 10
+fixed-center = true
+bottom = false
+
+background =  ${colors.transparent}
+foreground = ${colors.foreground}
+
+line-size = 3
+
+font-0 = Source Code Pro Medium:pixelsize=14;1
+font-1 = FontAwesome5Free:pixelsize=10
+font-2 = FontAwesome5Free:style=Solid:pixelsize=10
+font-3 = FontAwesome5Brands:pixelsize=15
+font-4 = FontAwesome5Brands:style=Solid:pixelsize=10
+font-5 = FontAwesome5Free:style=Solid:pixelsize=15
+
+modules-left = i3
+;modules-center = mpd
+modules-center = xwindow
+modules-right = memory cpu pulseaudio xkeyboard date time powermenu
+
+tray-position = right
+border-top-size = 5
+border-left-size = 0
+border-right-size = 10
+
+module-margin-left = 0
+module-margin-right = 0
+padding-left = 0
+padding-right = 0
+tray-transparent = false
+tray-detached = false
+tray-offset-x = -28
+tray-offset-y = -14
+tray-background = #494949
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:%
+format-padding = 2
+;format-margin = 1
+
+format-background = ${colors.background}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+label-layout = 
+
+label-indicator-padding = 2
+label-indicator-background = ${colors.alert}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /home
+
+label-mounted =  %used%/%total%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground =
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+format-background = ${colors.background}
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${xrdb:color7:#222}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.accent}
+label-focused-underline = #72A1B2
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-background = ${colors.accent}
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+;
+;; Separator in between workspaces
+;; label-separator = |
+
+ws-icon-0 = "1;%{T6}"
+ws-icon-1 = "2;%{T6}"
+ws-icon-2 = "3;%{T6}"
+ws-icon-3 = "4;%{T6}"
+ws-icon-4 = "5;%{T6}"
+ws-icon-5 = "6;%{T6}"
+ws-icon-6 = "7;%{T6}"
+ws-icon-default = 
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-time>  <bar-progress> <label-song>  <icon-prev> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+bar-progress-width = 10
+bar-progress-indicator = |
+bar-progress-indicator-foreground = #bb
+bar-progress-fill = ─
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-foreground = #44
+bar-progress-empty-font = 3
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = BL
+
+bar-width = 5
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-fill = ─
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label = %percentage:2%%
+
+format-padding = 2
+format-background = ${colors.accent}
+format-foreground = ${colors.foreground}
+format-margin = 0
+
+[module/memory]
+type = internal/memory
+interval = 2
+label =  %percentage_used%%
+
+format-padding = 2
+format-background = ${colors.accent}
+format-foreground = ${colors.foreground}
+format-margin = 0
+
+[module/eth]
+type = internal/network
+interface = enp1s0
+interval = 3.0
+
+format-connected-underline = #83a598
+format-connected-prefix = 
+label-connected =  %downspeed%  %upspeed%  %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/time]
+type = internal/date
+interval = 40
+label = %time%
+time = %l:%M %p
+format-padding = 2
+format-background = ${colors.accent}
+
+[module/date]
+type = internal/date
+interval = 1200
+label = %date%
+date = %A, %d %B
+format-padding = 3
+format-background = ${colors.background}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 2
+
+format-volume = <label-volume>
+label-volume =  %percentage%%
+
+label-muted = 
+label-muted-foreground = #666
+
+
+format-volume-padding = 2
+format-volume-background = ${colors.accent}
+format-volume-foreground = ${colors.foreground}
+format-volume-margin = 0
+
+format-muted-padding = 2
+format-muted-background = ${colors.accent}
+format-muted-foreground = ${colors.foreground}
+format-muted-margin = 0
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging><label-charging>
+format-charging-background = ${colors.background}
+label-charging-background = ${colors.background}
+
+format-discharging = <animation-discharging><label-discharging>
+format-discharging-background = ${colors.background}
+label-discharging-background = ${colors.background}
+
+format-full = " "
+format-full-background = ${colors.background}
+format-full-padding = 1
+
+;ramp-capacity-0 = 
+;ramp-capacity-1 = 
+;ramp-capacity-2 = 
+;ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-background = ${colors.background}
+animation-charging-framerate = 750
+animation-charging-padding = 1
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-background = ${colors.background}
+animation-discharging-framerate = 750
+animation-discharging-padding = 1
+; Default: 5
+poll-interval = 5
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #83a598
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+[module/info]
+type = custom/text
+content = ""
+click-left = /home/martin-gutierrez/.config/polybar/toggle_bars
+content-background = ${colors.background}
+content-padding = 1
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = false
+
+format-spacing = 0
+
+label-open = 
+label-close = cancel
+label-separator = |
+
+menu-0-0 = reboot
+menu-0-0-foreground = ${colors.foreground}
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-foreground = ${colors.foreground}
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = systemctl reboot
+
+menu-2-0 = power off
+menu-2-0-exec = systemctl poweroff -i
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+format-padding = 2
+format-background = ${colors.background}
+
+[settings]
+screenchange-reload = false
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini

@@ -1,0 +1,292 @@
+#
+# Should you change your keyboard layout some time, delete
+# this file and re-run i3-config-wizard(1).
+#
+
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod1
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:Source Code Pro 11
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+# just one session
+#bindsym $mod+Return exec urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME" 
+# multiple sessions 
+bindsym $mod+Return exec kitty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+# bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+
+# rofi with tab
+bindsym $mod+Tab exec "rofi -show drun -modi drun#window -show-icons -sidebar-mode"
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left 40 px
+bindsym $mod+Shift+j move down 40 px
+bindsym $mod+Shift+k move up 40 px
+bindsym $mod+Shift+l move right 40 px
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+o split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+q layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# set workspace monitor binding
+workspace 1 output DP-0
+workspace 5 output DP-3
+workspace 6 output DP-3
+workspace 7 output DP-3
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize keybinds
+bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+k resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+j resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+s move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+s scratchpad show
+
+# show sncli
+bindsym $mod+n [class="kitty-sncli"] scratchpad show, move position center
+
+# show Keepassxc
+bindsym $mod+m [class="KeePassXC"] scratchpad show, move position center
+
+# toggle floating for mpv windows
+bindsym $mod+y [class="mpv"] focus, floating toggle, move position 4057 1476, resize set 450 225
+
+# Make floating window sticky
+bindsym $mod+Ctrl+s sticky toggle
+
+# Multimedia Keys
+# (xxx Pulse xxx) Amixer Audio controls
+bindsym XF86AudioRaiseVolume exec  amixer -D pulse -q set Master 5%+ unmute #increase sound volume
+bindsym XF86AudioLowerVolume exec amixer -D pulse -q set Master 5%- unmute #decrease sound volume
+bindsym XF86AudioMute exec amixer -D pulse -q set Master toggle  # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
+# power off, lockscreen and sleep configuration
+set $Locker i3lock && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id /home/martin-gutierrez/.config/i3/lockscript, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"; exec "powering off..."
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+    
+bindsym $mod+shift+p mode "$mode_system"
+
+mode "gaps - reset with tab" {
+        bindsym Down gaps inner all minus 1
+        bindsym Left gaps outer all minus 1
+        bindsym Up gaps inner all plus 1
+        bindsym Right gaps outer all plus 1
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym Tab    mode "default";gaps left all set 0, gaps right all set 1 
+}
+
+bindsym $mod+g mode "gaps - reset with tab"
+
+# gaps rules
+gaps inner 11
+gaps outer 2
+bindsym $mod+b gaps left current set 540; gaps right current set 540
+
+# i3 window rules
+
+# always open sncli with kitty inside scratchpad
+for_window [class="kitty-sncli"] move scratchpad, resize set 1280 743
+
+# always open Keepassxc in floating mode
+# for_window [class="KeePassXC"] move scratchpad, floating enable, resize set 1149 802
+
+# always open feh in floating mode
+for_window [instance="feh"] floating enable, move position 0 0
+
+# always open xfreerdp in floating mode
+for_window [class="xfreerdp"] floating disable
+
+# always open Albion-Online in floating mode
+for_window [class="Albion-Online"] floating enable, move position 1920 0
+
+# always open thunar in floating mode
+for_window [class="Thunar"] floating enable, resize set 780 580
+
+# always open PulseAudio Volume Control in floating mode
+for_window [class="Pavucontrol"] floating enable, resize set 800 600
+
+# always open Spotify on workspace 7
+for_window [class="Spotify"] move to workspace 7
+
+# always open Thunderbird on workspace 7
+for_window [class="Thunderbird"] move to workspace 7
+
+# always open mpv in floating mode
+for_window [class="mpv"] floating enable, move position 3329 1067, resize set 1180 664
+
+# always open ncmpcpp at a certain size
+for_window [instance="ncmpcpp"] floating enable, resize set 562 206, move scratchpad, move absolute position center
+
+# browser pop-ups
+for_window [window_role="pop-up"] floating enable
+
+# border rules
+default_border pixel 0
+default_floating_border none
+
+# open programs with keybinds
+bindsym $mod+i exec qutebrowser; exec "notify-send -i '/usr/share/icons/hicolor/64x64/apps/qutebrowser.png'  Opening qutebrowser"
+bindsym $mod+z exec firefox; exec "notify-send -i '/usr/share/icons/hicolor/64x64/apps/firefox.png'  Opening Firefox"
+bindsym $mod+r exec kitty -d /home/martin-gutierrez/ -e ranger
+bindsym $mod+Shift+n exec exec kitty --class kitty-sncli -e /home/martin-gutierrez/.local/bin/sncli
+bindsym $mod+Shift+m exec exec keepassxc
+bindsym $mod+u exec xdotool keyup Meta_L; exec xdotool type --clearmodifiers --delay 170 ' martin.gutierrez@inchcape.com' # delay and blank space at the begining are necessary
+bindsym $mod+x exec '/home/martin-gutierrez/.local/bin/screenshot'
+bindsym $mod+t exec GTK_THEME=phocus thunar
+
+# autostart applications
+exec_always --no-startup-id '/home/martin-gutierrez/.fehbg' &
+exec_always  "setxkbmap -layout latam"
+exec_always "xrandr --dpi 96 --output DP-0 --mode 3440x1440 --rate 100 --pos 1080x304 --primary --output DP-3 --mode 1920x1080 --rate 60 --pos 0x0 --rotate right"
+exec --no-startup-id redshift
+# exec --no-startup-id picom --xrender-sync-fence --experimental-backends
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 &
+exec --no-startup-id pasystray
+exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc
+exec --no-startup-id udiskie &
+exec_always --no-startup-id /home/martin-gutierrez/.config/polybar/launch.sh
+exec_always wal -R -n
+
+# from Xresources
+
+# changes windows focus on mouse hover
+set_from_resource $focus_follows_mouse i3wm.focus_follows_mouse yes
+focus_follows_mouse $focus_follows_mouse
+
+# changes mouse warping behaviour
+set_from_resource $mouse_warping i3wm.mouse_warping output
+mouse_warping $mouse_warping
+
+#############################################
+###########      COLORS        ##############
+#############################################
+
+# THEME
+
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color1 #f0f0f0
+set_from_resource $alt i3wm.color2 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused          $alt     $alt     $fg  $bg       $alt
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
