@@ -1,4 +1,4 @@
-# Work laptip dotfiles
+# Work laptop dotfiles
 
 ## Arch linux configuration files
   Some of the configuration dependences are:
