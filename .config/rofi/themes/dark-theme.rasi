@@ -1,0 +1,74 @@
+* 
+{
+    background-color:        #000000;
+    border-color:            #000000;
+    text-color:              #ffffff;
+    font:                    "Monaco 12";
+}
+
+window 
+{
+	location:	             center;
+	height:		             650px;
+        margin: 0% 7% 0% 7%;
+	orientation:             horizontal;
+        padding:                 10px;
+        border-radius: 25;
+}
+
+inputbar 
+{
+    border:                   0 0 1px 0;
+    children:                 [prompt,entry];
+}
+
+prompt
+{
+    padding:                  8px 16px 16px 16px ;
+    border:                   0 1px 0 0;
+    text-color:               #ba5c75;
+    font:                     "JetBrainsMono Nerd Font 20";
+}
+
+entry
+{
+    padding:                  16px;
+    text-color:               #8e6f98;
+    font:                    "MonacoBSemi 13";
+
+}
+
+listview 
+{
+    cycle:                    false;
+    margin:                   0 0 1px 0;
+    scrollbar:                false;
+    columns:                  2;
+}
+
+element 
+{
+    border:                   0 0 1px 0;
+    padding:                  16px;
+}
+
+element selected
+{
+    text-color:               #000000;
+    background-color:         #1c1c1c;
+    text-color:               #bacfd1;
+}
+
+element-text
+{
+    background-color:         inherit;
+    text-color:               inherit;
+}
+
+element-icon
+{
+    size:                     45px ;
+    margin:                   0 12px 0 0;
+	background-color:         inherit;
+}
+
