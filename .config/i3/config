@@ -249,7 +249,7 @@ exec --no-startup-id redshift
 exec --no-startup-id picom --xrender-sync-fence --experimental-backends
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 &
 exec --no-startup-id pasystray
-exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc
+exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc-light
 exec --no-startup-id udiskie &
 exec_always --no-startup-id /home/martin-gutierrez/.config/polybar/launch.sh
 exec_always wal -R -n
