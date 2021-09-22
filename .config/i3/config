@@ -190,6 +190,7 @@ bindsym $mod+g mode "gaps - reset with tab"
 # gaps rules
 gaps inner 11
 gaps outer 2
+gaps top 31
 bindsym $mod+b gaps left current set 540; gaps right current set 540
 
 # i3 window rules
