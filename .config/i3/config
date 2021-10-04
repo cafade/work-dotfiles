@@ -133,10 +133,10 @@ bindsym $mod+Shift+s move scratchpad
 bindsym $mod+s scratchpad show
 
 # show sncli
-bindsym $mod+n [class="kitty-sncli"] scratchpad show, move position center
+bindsym $mod+n [class="kitty-sncli"] scratchpad show
 
 # show Keepassxc
-bindsym $mod+m [class="KeePassXC"] scratchpad show, move position center
+bindsym $mod+m [class="KeePassXC"] scratchpad show
 
 # toggle floating for mpv windows
 bindsym $mod+y [class="mpv"] focus, floating toggle, move position 4057 1476, resize set 450 225
@@ -236,7 +236,7 @@ default_floating_border none
 bindsym $mod+i exec qutebrowser; exec "notify-send -i '/usr/share/icons/hicolor/64x64/apps/qutebrowser.png'  Opening qutebrowser"
 bindsym $mod+z exec firefox; exec "notify-send -i '/usr/share/icons/hicolor/64x64/apps/firefox.png'  Opening Firefox"
 bindsym $mod+r exec kitty -d /home/martin-gutierrez/ -e ranger
-bindsym $mod+Shift+n exec exec kitty --class kitty-sncli -e /home/martin-gutierrez/.local/bin/sncli
+bindsym $mod+Shift+n exec kitty --class kitty-sncli -e /home/martin-gutierrez/.local/bin/sncli
 bindsym $mod+Shift+m exec keepassxc
 bindsym $mod+u exec xdotool keyup Meta_L; exec xdotool type --clearmodifiers --delay 170 ' martin.gutierrez@inchcape.com' # delay and blank space at the begining are necessary
 bindsym $mod+x exec '/home/martin-gutierrez/.local/bin/screenshot'
