@@ -25,7 +25,7 @@ wlaptop() {
 }
 
 # Set variables
-export EDITOR=/home/learnin/.local/bin/lvim
+export EDITOR=/home/martin-gutierrez/.local/bin/lvim
 export BROWSER=/usr/bin/qutebrowser
 
 # Custom aliases

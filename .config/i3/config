@@ -237,7 +237,7 @@ bindsym $mod+i exec qutebrowser; exec "notify-send -i '/usr/share/icons/hicolor/
 bindsym $mod+z exec firefox; exec "notify-send -i '/usr/share/icons/hicolor/64x64/apps/firefox.png'  Opening Firefox"
 bindsym $mod+r exec kitty -d /home/martin-gutierrez/ -e ranger
 bindsym $mod+Shift+n exec exec kitty --class kitty-sncli -e /home/martin-gutierrez/.local/bin/sncli
-bindsym $mod+Shift+m exec exec keepassxc
+bindsym $mod+Shift+m exec keepassxc
 bindsym $mod+u exec xdotool keyup Meta_L; exec xdotool type --clearmodifiers --delay 170 ' martin.gutierrez@inchcape.com' # delay and blank space at the begining are necessary
 bindsym $mod+x exec '/home/martin-gutierrez/.local/bin/screenshot'
 bindsym $mod+t exec GTK_THEME=phocus thunar
