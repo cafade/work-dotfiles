@@ -1,0 +1,48 @@
+*
+{
+    background-color:   #000000;
+    text-color:         #ffffff;
+    font:               "MonacoBSemi 13";
+}
+
+window
+{
+  width:                200px;
+  height:               310px;
+  location:	        northeast;
+  x-offset:             -13px;
+  y-offset:             40px;
+  padding:              10px;
+  border-radius: 8;
+
+  children:             [ listview ];
+}
+
+listview
+{
+  layout:               vertical;
+  lines:                5;
+}
+
+element
+{
+  padding:              16px;
+}
+
+element.selected
+{
+    background-color:         #1c1c1c;
+    text-color:               #bacfd1;
+  border-radius: 8;
+}
+
+element-text
+{
+    background-color:   inherit;
+    text-color:         inherit;
+}
+
+element-icon
+{
+    background-color:   inherit;
+}
