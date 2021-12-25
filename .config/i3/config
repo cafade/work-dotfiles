@@ -161,10 +161,10 @@ set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) re
 mode "$mode_system" {
     bindsym l exec --no-startup-id /home/martin-gutierrez/.config/i3/lockscript, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"; exec "powering off..."
+    bindsym s exec --no-startup-id $Locker && sudo systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && sudo systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id sudo systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id sudo systemctl poweroff -i, mode "default"; exec "powering off..."
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
