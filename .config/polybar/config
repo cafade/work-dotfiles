@@ -46,10 +46,7 @@ include-file = $HOME/.config/polybar/modules.ini
 
 [bar/misc-bar]
     inherit = constants/main
-    include-file = $HOME/.config/polybar/fonts.ini
-    override-redirect = true
     background = ${colors.color7}
-    wm-restack = i3
 
     width = 25%
     height = 2.38%
@@ -114,6 +111,10 @@ include-file = $HOME/.config/polybar/modules.ini
 
 [bar/wall-tile-center-background]
     inherit = constants/background
+    ; Light mode
+    ; background = ${colors.color1}
+    ; foreground = ${colors.color2}
+    ; Dark mode
     background = ${colors.color1}
     foreground = ${colors.color2}
     height = 2.7%
