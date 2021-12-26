@@ -7,5 +7,5 @@ configuration {
 	display-run: 		"";
 }
 
-// @theme "~/.config/rofi/themes/dark-theme.rasi"
-@theme "~/.config/rofi/themes/light-theme.rasi"
+@theme "~/.config/rofi/themes/dark-theme.rasi"
+// @theme "~/.config/rofi/themes/light-theme.rasi"

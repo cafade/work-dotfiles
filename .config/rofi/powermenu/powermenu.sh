@@ -8,18 +8,18 @@ log_out="Log out"
 
 chosen=$(printf '%s;%s;%s;%s;%s\n' "$power_off" "$reboot" "$lock" "$suspend" \
                                    "$log_out" \
-    | rofi -theme 'powermenu/powermenu-light.rasi' \
+    | rofi -theme 'powermenu/powermenu-dark.rasi' \
            -dmenu \
            -sep ';' \
            -selected-row 0)
 
 case "$chosen" in
     "$power_off")
-        systemctl poweroff -i
+        sudo systemctl poweroff -i
         ;;
 
     "$reboot")
-        systemctl reboot
+        sudo systemctl reboot
         ;;
 
     "$lock")
@@ -27,7 +27,7 @@ case "$chosen" in
         ;;
 
     "$suspend")
-        systemctl suspend
+        sudo systemctl suspend
         ;;
 
     "$log_out")
