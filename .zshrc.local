@@ -27,6 +27,7 @@ wlaptop() {
 # Set variables
 export EDITOR=/home/martin-gutierrez/.local/bin/lvim
 export BROWSER=/usr/bin/qutebrowser
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Custom aliases
 alias neo='neofetch'
