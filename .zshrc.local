@@ -28,6 +28,7 @@ wlaptop() {
 export EDITOR=/home/martin-gutierrez/.local/bin/lvim
 export BROWSER=/usr/bin/qutebrowser
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export ANSIBLE_CONFIG=$HOME/.ansible/ansible.cfg
 
 # Custom aliases
 alias neo='neofetch'
