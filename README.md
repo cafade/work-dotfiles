@@ -23,4 +23,4 @@
   - xdotool
   - polkit-kde-authentication-agent
 
-Most of the config was taken from other people dotfiles, for example the neovim config is based on the NvChad project.
+Most of the config was taken from other people dotfiles, for example the neovim config is based on the Lunarvim project.
