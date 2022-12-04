@@ -1,0 +1,16 @@
+adwaita-dark
+azure-cli
+breeze-default-cursor-theme
+fltrdr
+google-chrome
+gotop-bin
+gromit-mpx-git
+i3lock-color
+msodbcsql
+mssql-tools
+mycli
+nerd-fonts-jetbrains-mono-160
+numix-gtk-theme
+ttf-breeze-sans
+xzoom
+yay
