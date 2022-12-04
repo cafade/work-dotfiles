@@ -92,7 +92,7 @@ include-file = $HOME/.config/polybar/modules.ini
     width = 2.35%
     height = 2.4%
     offset-y = 0.14%
-    offset-x = 0.3%
+    offset-x = 0.14%
     ; modules-left = round-left-blue rofi music round-right-pink song
     modules-left = round-left-blue rofi round-right-blue
 
