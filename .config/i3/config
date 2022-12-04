@@ -247,7 +247,7 @@ exec_always --no-startup-id '/home/martin-gutierrez/.fehbg' &
 exec_always  "setxkbmap -layout latam"
 exec_always "xrandr --dpi 96 --output DP-0 --mode 3440x1440 --rate 100 --pos 1080x304 --primary --output DP-3 --mode 1920x1080 --rate 60 --pos 0x0 --rotate right"
 exec --no-startup-id redshift
-exec --no-startup-id picom --xrender-sync-fence --experimental-backends
+exec --no-startup-id picom
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 &
 exec --no-startup-id pasystray
 exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc-dark
