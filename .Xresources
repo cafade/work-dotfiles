@@ -25,6 +25,7 @@ Xft.dpi: 96
 Xft.antialias: 1
 rofi.dpi: 100
 Xcursor.size: 32
+Xcursor.theme: Breeze_Default
 
 !i3wm.focus_follows_mouse: no
 !i3wm.mouse_warping: none
