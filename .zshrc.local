@@ -1,10 +1,15 @@
-# Pywal config
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences &)
-# To add support for TTYs this line can be optionally added.
-source ~/.cache/wal/colors-tty.sh
+# # Pywal config
+# # Import colorscheme from 'wal' asynchronously
+# # &   # Run the process in the background.
+# # ( ) # Hide shell job control messages.
+# (cat ~/.cache/wal/sequences &)
+# # To add support for TTYs this line can be optionally added.
+# source ~/.cache/wal/colors-tty.sh
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        source "$BASE16_SHELL/profile_helper.sh"
 
 # Tmux config
 if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then                                   
@@ -24,19 +29,32 @@ wlaptop() {
   done
 }
 
+scroll-and-clear-screen() {
+  local i=1
+  while read; do ((i++)); done <<< $PS1
+  printf '\n%.0s' {$i..$LINES}
+  zle clear-screen
+}
+
+zle -N scroll-and-clear-screen
+bindkey '^l' scroll-and-clear-screen
+
 # Set variables
-export EDITOR=/home/martin-gutierrez/.local/bin/lvim
+export EDITOR=nvim
 export BROWSER=/usr/bin/qutebrowser
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export ANSIBLE_CONFIG=$HOME/.ansible/ansible.cfg
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Custom aliases
 alias neo='neofetch'
 alias mountWin10='sshfs win10: ~/sshfs'
 alias maimfeh='maim -s /tmp/selection.png && feh /tmp/selection.png'
 alias syu='sudo pacman -Syu'
-alias nvim='lvim'
-alias sudo='sudo '
+#alias nvim='lvim'
+#alias sudo='sudo '
+alias k='kubectl --kubeconfig ~/.kube/config'
 
 # Custom Plugins
 source '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh'
@@ -46,3 +64,5 @@ source /usr/share/fzf/completion.zsh
 
 # Custom paths
 export PATH="${PATH}:${HOME}/.local/bin/"
+export PATH="${PATH}:${HOME}/.config/composer/vendor/bin"
+export PATH="${PATH}:${HOME}/.dotnet/tools"
