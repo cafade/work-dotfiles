@@ -23,7 +23,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "gruvbox",
     },
   },
 
@@ -73,6 +73,14 @@ return {
         },
       })
     end,
+  },
+
+  -- Configure telescope mappings
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader>gs", false },
+    },
   },
 
   -- add pyright to lspconfig
