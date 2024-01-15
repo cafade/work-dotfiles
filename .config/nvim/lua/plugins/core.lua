@@ -15,6 +15,12 @@ return {
   },
 
   {
+    "rose-pine/neovim",
+    lazy = false,
+    name = "rose-pine",
+  },
+
+  {
     "folke/tokyonight.nvim",
     lazy = false,
   },
@@ -23,7 +29,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "rose-pine-moon",
     },
   },
 
@@ -92,8 +98,54 @@ return {
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
+        -- ruff_lsp = {
+        --   keys = {
+        --     {
+        --       "<leader>co",
+        --       function()
+        --         vim.lsp.buf.code_action({
+        --           apply = true,
+        --           context = {
+        --             only = { "source.organizeImports" },
+        --             diagnostics = {},
+        --           },
+        --         })
+        --       end,
+        --       desc = "Organize Imports",
+        --     },
+        --   },
+        -- },
       },
+      -- setup = {
+      --   ruff_lsp = function()
+      --     require("lazyvim.util").lsp.on_attach(function(client, _)
+      --       if client.name == "ruff_lsp" then
+      --         -- Disable hover in favor of Pyright
+      --         client.server_capabilities.hoverProvider = false
+      --       end
+      --     end)
+      --   end,
+      -- },
     },
+  },
+
+  {
+    "nvimtools/none-ls.nvim",
+    event = "LazyFile",
+    dependencies = { "mason.nvim" },
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.root_dir = opts.root_dir
+        or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        nls.builtins.formatting.fish_indent,
+        nls.builtins.diagnostics.fish,
+        nls.builtins.formatting.stylua,
+        nls.builtins.formatting.shfmt,
+        nls.builtins.diagnostics.mypy,
+        nls.builtins.diagnostics.ruff,
+      })
+    end,
   },
 
   -- add more treesitter parsers
@@ -117,6 +169,7 @@ return {
         "vim",
         "yaml",
         "hcl",
+        "terraform",
       },
     },
   },
@@ -132,6 +185,9 @@ return {
         "flake8",
         "terraform-ls",
         "black",
+        "mypy",
+        "ruff",
+        "ruff-lsp",
         "prettier",
       },
     },
